@@ -13,6 +13,8 @@ namespace SpaceRace2
 {
     public partial class Form1 : Form
     {
+        string state = "main menu";
+        
         static int player1Score = 0;
         static int player2Score = 0;
         static bool gameOver = false;
@@ -83,6 +85,18 @@ namespace SpaceRace2
                 case Keys.Right:
                     rightDown = false;
                     break;
+                case Keys.Space:
+                    if (state == "main menu")
+                    {
+                        state = "playing";
+                        timer1.Enabled = true;
+
+                        label3.Visible = false;
+                        pressSpaceBarToStart.Visible = false;
+                        label1.Visible = false;
+                        label2.Visible = false;
+                    }
+                    break;
             }
 
         }
@@ -120,19 +134,29 @@ namespace SpaceRace2
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            // Draw oval rocket ships for players
-            e.Graphics.FillEllipse(Brushes.Red, player1.Left, player1.Top, player1.Width, player1.Height);
-            e.Graphics.FillEllipse(Brushes.Blue, player2.Left, player2.Top, player2.Width, player2.Height);
-
-            for (int i = 1; i < asteroidList.Count; i++)
+            if (state == "playing")
             {
-                e.Graphics.FillEllipse(Brushes.White, asteroidList[i]);
-            }
-            string scoreText = $"Player 1: {player1Score}   Player 2: {player2Score}";
-            string timeText = $"Time: {stopwatch.Elapsed.TotalSeconds:F1}s";
+                // Draw oval rocket ships for players
+                e.Graphics.FillEllipse(Brushes.Red, player1.Left, player1.Top, player1.Width, player1.Height);
+                e.Graphics.FillEllipse(Brushes.Blue, player2.Left, player2.Top, player2.Width, player2.Height);
 
-            e.Graphics.DrawString(scoreText, Font, Brushes.White, (Width - e.Graphics.MeasureString(scoreText, Font).Width) / 2, 0);
-            e.Graphics.DrawString(timeText, Font, Brushes.White, (Width - e.Graphics.MeasureString(timeText, Font).Width) / 2, 20);
+                for (int i = 1; i < asteroidList.Count; i++)
+                {
+                    e.Graphics.FillEllipse(Brushes.White, asteroidList[i]);
+                }
+                string scoreText = $"Player 1: {player1Score}   Player 2: {player2Score}";
+                string timeText = $"Time: {stopwatch.Elapsed.TotalSeconds:F1}s";
+
+                e.Graphics.DrawString(scoreText, Font, Brushes.White, (Width - e.Graphics.MeasureString(scoreText, Font).Width) / 2, 0);
+                e.Graphics.DrawString(timeText, Font, Brushes.White, (Width - e.Graphics.MeasureString(timeText, Font).Width) / 2, 20);
+            }
+            else
+            {
+                label3.Visible = true;
+                pressSpaceBarToStart.Visible = true;
+                label1.Visible = false;
+                label2.Visible = false;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -249,15 +273,19 @@ namespace SpaceRace2
         {
             if (player1Score > player2Score)
             {
+                label1.Visible = true;
                 label1.Text = "Player 1 wins!";
             }
             else if (player1Score < player2Score)
             {
+                label2.Visible = true;
                 label2.Text = "PLayer 2 wins!";
             }
             timer1.Stop();
+            
             MessageBox.Show("Game Over");
-            Close();
+            state = "main menu";
+            Refresh();
         }
       
 

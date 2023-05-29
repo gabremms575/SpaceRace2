@@ -32,6 +32,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.pressSpaceBarToStart = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -59,12 +61,36 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "-";
             // 
+            // pressSpaceBarToStart
+            // 
+            this.pressSpaceBarToStart.AutoSize = true;
+            this.pressSpaceBarToStart.Font = new System.Drawing.Font("NSimSun", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pressSpaceBarToStart.ForeColor = System.Drawing.Color.White;
+            this.pressSpaceBarToStart.Location = new System.Drawing.Point(399, 52);
+            this.pressSpaceBarToStart.Name = "pressSpaceBarToStart";
+            this.pressSpaceBarToStart.Size = new System.Drawing.Size(249, 20);
+            this.pressSpaceBarToStart.TabIndex = 2;
+            this.pressSpaceBarToStart.Text = "PRESS SPACE BAR TO START";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("NSimSun", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(451, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(162, 28);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "SPACE RACE";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1060, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.pressSpaceBarToStart);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
@@ -83,6 +109,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label pressSpaceBarToStart;
+        private System.Windows.Forms.Label label3;
     }
 }
 
